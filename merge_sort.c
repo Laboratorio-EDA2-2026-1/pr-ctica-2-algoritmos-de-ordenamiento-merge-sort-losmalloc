@@ -1,4 +1,4 @@
-#include <stdio.h>
+ #include <stdio.h>
 #include <stdlib.h>
 
 /*
@@ -34,6 +34,7 @@ void merge(int arr[], int left, int mid, int right);
 
 int main() {
     int n;
+    printf("Dame el numero de arreglos\n");
     scanf("%d", &n);  // Leer el número de arreglos
     getchar();
     int total = n * n;  
@@ -41,13 +42,16 @@ int main() {
 
     // Leer n arreglos de tamaño n
     for (int i = 0; i < total; i++) {
+        printf("Dame un numero \n");
         scanf("%d", &arr[i]);
     }
+
 
     // Ordenar usando merge sort
     mergeSort(arr, 0, total - 1);
 
     // Imprimir el arreglo ordenado
+    printf("El arreglo ordenado es: \n");
     for (int i = 0; i < total; i++) {
         printf("%d ", arr[i]);
     }
