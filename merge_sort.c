@@ -35,7 +35,7 @@ void merge(int arr[], int left, int mid, int right);
 int main() {
     int n;
     scanf("%d", &n);  // Leer el número de arreglos
-
+    getchar();
     int total = n * n;  
     int *arr = (int *)malloc(total * sizeof(int));
 
@@ -59,51 +59,48 @@ int main() {
 
 // ---- Implementa aquí tu función mergeSort ----
 void mergeSort(int arr[], int left, int right) {
-    int n = sizeof(arr);
-    if (n = 1){
-        return arr;
+    if(left < right){
+        int mid = (left + right)/2;
+
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid +1, right);
+
+        merge(arr, left, mid, right);
     }
-    int mid = ((left + right)/2);
-    mergeSort(arr, left, mid);
-    mergeSort(arr, mid + 1, right);
-    merge(arr, left, mid, right);
+    // TODO
 }
 
 // ---- Implementa aquí tu función merge ----
 void merge(int arr[], int left, int mid, int right) {
-    int Nl = (mid - left) + 1;
-    int Nr = (right - mid);
-    int L[Nl - 1];
-    int R[Nr - 1];
-    for (int i = 0; i = (Nl -1); i++){
+    int n1 = mid - left + 1;
+    int n2= right - mid;
+
+    int *L = (int *)malloc(n1 * sizeof(int));
+    int *R = (int *)malloc(n2 * sizeof(int));
+
+    for(int i = 0; i < n1; i++)
         L[i] = arr[left + i];
-    }
-    for (int j = 0; j = (Nr -1); j++){
-        R[j] = arr[mid + j + 1];
-    }
-    i = 0;
-    j = 0;
-    int k = left;
-    while (i < Nl){
-        if (L[i] < R[j]){
-            arr[k] = L[i];
-            i++;
+    for(int j = 0; j < n2; j++)
+        R[j] = arr[mid + 1 + j];
+
+    int i = 0, j = 0, k = left;
+    while ( i < n1 && j < n2){
+        if(L[i]<=R[j]){
+            arr[k++] = L[i++];
+        }else {
+            arr[k++] = R[j++];
+
         }
-        else {
-            arr[k] = R[j];
-            j++;
-        }
-        k++;
+
     }
-    while (i < Nl){
-        arr[k] = L[i];
-        i++;
-        k++;
+
+    while(i < n1){
+        arr[k++] = L[i++];
     }
-    while (j < Nr){
-        arr[k] = R[j];
-        j++;
-        k++;
+    while(j < n2){
+        arr[k++] = R[j++];
     }
-    return arr;
+    free(L);
+    free(R);
+    // TODO
 }
