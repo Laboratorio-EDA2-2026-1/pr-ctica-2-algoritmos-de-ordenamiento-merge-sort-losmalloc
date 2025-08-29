@@ -59,10 +59,51 @@ int main() {
 
 // ---- Implementa aquí tu función mergeSort ----
 void mergeSort(int arr[], int left, int right) {
-    // TODO
+    int n = sizeof(arr);
+    if (n = 1){
+        return arr;
+    }
+    int mid = ((left + right)/2);
+    mergeSort(arr, left, mid);
+    mergeSort(arr, mid + 1, right);
+    merge(arr, left, mid, right);
 }
 
 // ---- Implementa aquí tu función merge ----
 void merge(int arr[], int left, int mid, int right) {
-    // TODO
+    int Nl = (mid - left) + 1;
+    int Nr = (right - mid);
+    int L[Nl - 1];
+    int R[Nr - 1];
+    for (int i = 0; i = (Nl -1); i++){
+        L[i] = arr[left + i];
+    }
+    for (int j = 0; j = (Nr -1); j++){
+        R[j] = arr[mid + j + 1];
+    }
+    i = 0;
+    j = 0;
+    int k = left;
+    while (i < Nl){
+        if (L[i] < R[j]){
+            arr[k] = L[i];
+            i++;
+        }
+        else {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+    while (i < Nl){
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+    while (j < Nr){
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+    return arr;
 }
